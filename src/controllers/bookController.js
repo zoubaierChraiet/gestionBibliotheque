@@ -9,7 +9,7 @@ const createBook = async (request, response, next) => {
     response.status(201).json(newBook);
   } catch (err) {
     Logger.error("[createBook] - error occured while creating book");
-    next(new Error(err));
+    next(err);
   }
 };
 
@@ -25,7 +25,7 @@ const updateBook = async (request, response, next) => {
       `[updateBook] - error occured while updating book with id ${id}`,
       err
     );
-    next(new Error(err));
+    next(err);
   }
 };
 
@@ -37,7 +37,7 @@ const getAllBooks = async (_, response, next) => {
     response.status(200).json(books);
   } catch (err) {
     Logger.error(`[getAllBooks] - error occured while getting books`);
-    next(new Error(err));
+    next(err);
   }
 };
 
@@ -52,7 +52,7 @@ const deleteBook = async (request, response, next) => {
     Logger.error(
       `[deleteBook] - error occured while deleting book with id: ${id}`
     );
-    next(new Error(err));
+    next(err);
   }
 };
 
