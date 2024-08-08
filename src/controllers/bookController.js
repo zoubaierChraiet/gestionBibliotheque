@@ -14,21 +14,22 @@ const createBook = async (request, response, next) => {
 };
 
 const updateBook = async (request, response, next) => {
+  const { id } = request.params;
   try {
-    const { id } = request.params;
     Logger.info(`[updateBook] - Attempting to update book with id ${id}`);
     const updatedBook = await BookRepository.updateBook(id, request.body);
     Logger.info(`[updateBook] - updated book with id ${id} successfully`);
     response.status(200).json(updatedBook);
   } catch (err) {
     Logger.error(
-      `[updateBook] - error occured while updating book with id ${id}`
+      `[updateBook] - error occured while updating book with id ${id}`,
+      err
     );
     next(new Error(err));
   }
 };
 
-const getAllBooks = async (_, response) => {
+const getAllBooks = async (_, response, next) => {
   try {
     Logger.info(`[getAllBooks] - Attempting to get all books`);
     const books = await BookRepository.findAllBooks();
@@ -40,13 +41,13 @@ const getAllBooks = async (_, response) => {
   }
 };
 
-const deleteBook = async (request, response) => {
+const deleteBook = async (request, response, next) => {
+  const { id } = request.params;
   try {
-    const { id } = request.params;
     Logger.info(`[deleteBook] - Attempting to delete book with id: ${id}`);
     await BookRepository.deleteBook(id);
     Logger.info(`[deleteBook] - deleted book successfully`);
-    response.status(200);
+    response.status(200).json({ success: true });
   } catch (err) {
     Logger.error(
       `[deleteBook] - error occured while deleting book with id: ${id}`
