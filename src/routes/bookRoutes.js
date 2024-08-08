@@ -20,7 +20,7 @@ bookRouter.post(
   bookController.createBook
 );
 
-bookRouter.patch(
+bookRouter.put(
   "/:id",
   validationMiddleware(UpdateBookSchema),
   bookController.updateBook
