@@ -10,6 +10,7 @@ import connectDatabase from "./utils/db.js";
 
 // Middlewares
 import { errorMiddleware } from "./middlewares/errorMiddleware.js";
+import Logger from "./utils/logger.js";
 
 dotenv.config();
 
@@ -26,5 +27,5 @@ app.use(errorMiddleware);
 connectDatabase();
 
 app.listen(PORT, () => {
-  console.log(`App Started on port: ${PORT}`);
+  Logger.info(`App Started on port: ${PORT}`);
 });
