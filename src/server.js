@@ -1,5 +1,6 @@
 // Librairies
 import express from "express";
+import dotenv from "dotenv";
 
 // Routers
 import bookRouter from "./routes/bookRoutes.js";
@@ -10,7 +11,9 @@ import connectDatabase from "./utils/db.js";
 // Middlewares
 import { errorMiddleware } from "./middlewares/errorMiddleware.js";
 
-const PORT = process.env.APP_PORT || 3000;
+dotenv.config();
+
+const PORT = process.env.APP_PORT;
 
 const app = express();
 

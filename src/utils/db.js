@@ -11,9 +11,7 @@ const connectDatabase = async () => {
 
   try {
     // init db connection
-    const db = await mongoose.connect(
-      "mongodb://localhost:27017/gestionBibliotheque"
-    );
+    const db = await mongoose.connect(process.env.DB_URL);
     // update connection state
     isConnected = db.connections[0].readyState;
     console.log("database is connected");
