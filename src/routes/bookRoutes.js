@@ -1,14 +1,30 @@
+// Librairies
+import { Router } from "express";
+
+// Middlewares
+import { validationMiddleware } from "../middlewares/validationMiddleware.js";
+
+// Controllers
 import bookController from "../controllers/bookController.js";
 
-import { Router } from "express";
+// Validation Schema
+import { AddBookSchema, UpdateBookSchema } from "../validations/book.js";
 
 const bookRouter = Router();
 
 bookRouter.get("/", bookController.getAllBooks);
 
-bookRouter.post("/", bookController.createBook);
+bookRouter.post(
+  "/",
+  validationMiddleware(AddBookSchema),
+  bookController.createBook
+);
 
-bookRouter.patch("/:id", bookController.updateBook);
+bookRouter.patch(
+  "/:id",
+  validationMiddleware(UpdateBookSchema),
+  bookController.updateBook
+);
 
 bookRouter.delete("/:id", bookController.deleteBook);
 
