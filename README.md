@@ -31,7 +31,12 @@ Pour exécuter ce projet localement, suivez ces étapes:
    npm install
    ```
 
-3. **Lancer le projet:**
+3. **Connexion Base de donnée**
+
+   1. installation d'un outils local(robo3T, mongoDB compass) avec l'utilisation de l'url de connexion local dans le fichier .env(DB_URL)
+   2. utilisation de l'url de connexion dans le fichier .env(ONLINE_DB_URL) et vous serez invité au projet qui contient la base en ligne
+
+4. **Lancer le projet:**
 
    ```sh
    npm start
@@ -39,13 +44,13 @@ Pour exécuter ce projet localement, suivez ces étapes:
 
    L'application sera exécutée à `http://localhost:3000`.
 
-4. **Lancer les tests:**
+5. **Lancer les tests:**
 
    ```sh
    npm run test:watch
    ```
 
-5. **Documentation swagger:**
+6. **Documentation swagger:**
 
    Vous pouvez tester les differentes routes avec une interface swagger sur la route:
    `http://localhost:3000/api-docs`
