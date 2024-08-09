@@ -15,4 +15,8 @@ export const ErrorDict = {
     status: 500,
     message: "Deletion failed",
   },
+  UPDATE_FAILED: {
+    status: 500,
+    message: "Update failed",
+  },
 };

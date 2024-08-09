@@ -19,18 +19,22 @@ const deleteBook = async (id) => {
     }
     return await BookModel.findByIdAndDelete(id);
   } catch (err) {
-    throw new CustomError("DELETION_FAILED");
+    throw new CustomError(err.type || "DELETION_FAILED");
   }
 };
 
 const updateBook = async (id, data) => {
   // Find the book to update
-  const bookToUpdate = await BookModel.findById(id);
-  if (!bookToUpdate) {
-    throw new CustomError("BOOK_NOT_FOUND");
+  try {
+    const bookToUpdate = await BookModel.findById(id);
+    if (!bookToUpdate) {
+      throw new CustomError("BOOK_NOT_FOUND");
+    }
+    const newBook = new BookModel(Object.assign(bookToUpdate, data));
+    return newBook.save();
+  } catch (err) {
+    throw new CustomError(err.type || "UPDATE_FAILED");
   }
-  const newBook = new BookModel(Object.assign(bookToUpdate, data));
-  return newBook.save();
 };
 
 const findAllBooks = async () => {

@@ -5,7 +5,7 @@ const createBook = async (request, response, next) => {
   try {
     Logger.info("[createBook] - Attempting book creation");
     const newBook = await BookRepository.addBook(request.body);
-    Logger.info("[createBook] - book created successfully", newBook.toJSON());
+    Logger.info("[createBook] - book created successfully", newBook);
     response.status(201).json(newBook);
   } catch (err) {
     Logger.error("[createBook] - error occured while creating book");
