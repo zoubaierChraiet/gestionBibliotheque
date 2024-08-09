@@ -5,6 +5,7 @@ import fs from "fs";
 import { serve, setup } from "swagger-ui-express";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
+import helmet from "helmet";
 
 // Routers
 import bookRouter from "./routes/bookRoutes.js";
@@ -29,6 +30,7 @@ const swaggerDocument = JSON.parse(
 
 const app = express();
 
+app.use(helmet());
 app.use(express.json());
 
 // Routes
