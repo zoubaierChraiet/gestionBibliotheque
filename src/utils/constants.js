@@ -7,4 +7,12 @@ export const ErrorDict = {
     status: 404,
     message: "Route not found",
   },
+  SAVE_FAILED: {
+    status: 500,
+    message: "Save failed",
+  },
+  DELETION_FAILED: {
+    status: 500,
+    message: "Deletion failed",
+  },
 };

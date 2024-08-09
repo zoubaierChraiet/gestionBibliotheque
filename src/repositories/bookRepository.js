@@ -6,7 +6,7 @@ const addBook = async (data) => {
     const newBook = new BookModel(data);
     return await newBook.save();
   } catch (err) {
-    throw new Error(err);
+    throw new CustomError("SAVE_FAILED");
   }
 };
 
@@ -19,7 +19,7 @@ const deleteBook = async (id) => {
     }
     return await BookModel.findByIdAndDelete(id);
   } catch (err) {
-    throw new Error(err);
+    throw new CustomError("DELETION_FAILED");
   }
 };
 
