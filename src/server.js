@@ -13,7 +13,7 @@ import bookRouter from "./routes/bookRoutes.js";
 import connectDatabase from "./utils/db.js";
 
 // Middlewares
-import { errorMiddleware } from "./middlewares/errorMiddleware.js";
+import { CustomError, errorMiddleware } from "./middlewares/errorMiddleware.js";
 import Logger from "./utils/logger.js";
 
 // Constants
@@ -34,6 +34,11 @@ app.use(express.json());
 // Routes
 app.use("/books", bookRouter);
 app.use("/api-docs", serve, setup(swaggerDocument));
+
+// Handle not found routes
+app.use("*", () => {
+  throw new CustomError("ROUTE_NOT_FOUND");
+});
 
 app.use(errorMiddleware);
 

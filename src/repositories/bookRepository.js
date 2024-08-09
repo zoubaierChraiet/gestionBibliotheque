@@ -2,17 +2,25 @@ import { CustomError } from "../middlewares/errorMiddleware.js";
 import BookModel from "../models/book.js";
 
 const addBook = async (data) => {
-  const newBook = new BookModel(data);
-  return await newBook.save();
+  try {
+    const newBook = new BookModel(data);
+    return await newBook.save();
+  } catch (err) {
+    throw new Error(err);
+  }
 };
 
 const deleteBook = async (id) => {
   // Find the book to delete
-  const bookToDelete = await BookModel.findById(id);
-  if (!bookToDelete) {
-    throw new CustomError("BOOK_NOT_FOUND");
+  try {
+    const bookToDelete = await BookModel.findById(id);
+    if (!bookToDelete) {
+      throw new CustomError("BOOK_NOT_FOUND");
+    }
+    return await BookModel.findByIdAndDelete(id);
+  } catch (err) {
+    throw new Error(err);
   }
-  return await BookModel.findByIdAndDelete(id);
 };
 
 const updateBook = async (id, data) => {

@@ -8,8 +8,8 @@ export class CustomError extends Error {
 }
 
 export const errorMiddleware = async (error, req, res, next) => {
-  const errorStatusCode = ErrorDict[error.type].status || 500;
-  const message = ErrorDict[error.type].message || "Unexpected error";
+  const errorStatusCode = ErrorDict[error?.type]?.status || 500;
+  const message = ErrorDict[error?.type]?.message || "Unexpected error";
 
   res.status(errorStatusCode).send({ error: message });
 };
