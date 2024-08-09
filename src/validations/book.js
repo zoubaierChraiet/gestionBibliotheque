@@ -1,13 +1,13 @@
-import yup from "yup";
+import { object, string, number } from "yup";
 
-export const AddBookSchema = yup.object().shape({
-  title: yup.string().required(),
-  author: yup.string().required(),
-  publicationYear: yup.number().required(),
+export const AddBookSchema = object().shape({
+  title: string().required(),
+  author: string().required(),
+  publicationYear: number().required(),
 });
 
-export const UpdateBookSchema = yup.object().shape({
-  title: yup.string(),
-  author: yup.string(),
-  publicationYear: yup.number(),
+export const UpdateBookSchema = object().shape({
+  title: string(),
+  author: string(),
+  publicationYear: number(),
 });
