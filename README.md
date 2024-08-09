@@ -45,7 +45,7 @@ Pour exécuter ce projet localement, suivez ces étapes:
    npm run test:watch
    ```
 
-   5. **Documentation swagger:**
+5. **Documentation swagger:**
 
    Vous pouvez tester les differentes routes avec une interface swagger sur la route:
    `http://localhost:3000/api-docs`
